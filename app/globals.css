@@ -127,3 +127,52 @@
     @apply font-sans;
     }
 }
+/* Frame: a quiet viewing room. The screen is the dominant surface. */
+.dark {
+  --background: #181818;
+  --foreground: #f2f2ec;
+  --card: #1f1f1f;
+  --card-foreground: #f2f2ec;
+  --popover: #272727;
+  --popover-foreground: #f2f2ec;
+  --primary: #c5d6a4;
+  --primary-foreground: #182112;
+  --secondary: #313131;
+  --secondary-foreground: #f2f2ec;
+  --muted: #272727;
+  --muted-foreground: #a8a8a1;
+  --accent: #313131;
+  --accent-foreground: #f2f2ec;
+  --border: #383833;
+  --input: #41413a;
+  --ring: #c5d6a4;
+  --destructive: #f4a09a;
+}
+@theme inline { --color-cinema: #000000; }
+html { color-scheme: dark; scrollbar-color: var(--input) var(--background); }
+h1, h2 { text-wrap: balance; }
+p { text-wrap: pretty; }
+::selection { background: var(--primary); color: var(--primary-foreground); }
+input { caret-color: var(--primary); }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+[data-slot="button"] { transition: background-color 240ms cubic-bezier(0.32,0.72,0,1), transform 240ms cubic-bezier(0.32,0.72,0,1); }
+[data-slot="button"]:active:not(:disabled) { transform: scale(0.98); }
+.play-emblem { display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; border: 1px solid var(--input); border-radius: 50%; color: var(--primary); }
+.timeline { height: 16px; accent-color: var(--primary); cursor: pointer; }
+.timeline:disabled { opacity: .3; cursor: default; }
+.timeline:focus-visible, .help-link:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
+.help-link { text-underline-offset: 4px; }
+.help-link:hover { color: var(--foreground); text-decoration: underline; }
+.skip-link { position: fixed; top: 8px; left: 8px; transform: translateY(-200%); padding: 12px 16px; background: var(--primary); color: var(--primary-foreground); z-index: 100; }
+.skip-link:focus { transform: translateY(0); }
+section:fullscreen { display: flex; flex-direction: column; background: #000; }
+section:fullscreen .player-screen { flex: 1; min-height: 0; aspect-ratio: auto; }
+@media (prefers-reduced-motion: no-preference) { main { animation: arrive 800ms cubic-bezier(0.32,0.72,0,1) both; } }
+@keyframes arrive { from { opacity: .35; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+.fullscreen-audio { display: none; }
+section:fullscreen .fullscreen-audio { display: flex; justify-content: flex-end; }
+
+.skip-link:not(:focus) { opacity: 0; pointer-events: none; }
